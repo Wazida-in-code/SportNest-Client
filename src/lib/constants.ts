@@ -1,6 +1,14 @@
+import { Building, CalendarDays, CirclePlus } from "lucide-react";
+
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "All Facilities", href: "/facilities" },
+] as const;
+
+export const dashboardLinks = [
+  { label: "Add Facility", href: "/dashboard/add-facility", icon: CirclePlus },
+  { label: "My Bookings", href: "/dashboard/my-bookings", icon: CalendarDays },
+  { label: "My Facilities", href: "/dashboard/my-facility", icon: Building },
 ] as const;
 
 export const footerLinks = {

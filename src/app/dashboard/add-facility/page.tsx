@@ -1,9 +1,10 @@
 import React from 'react';
+import AddFacilityPage from '../_components/AddFacilityPage';
 
 const page = () => {
     return (
-        <div className='flex justify-center items-center font-bold text-xl bg-yellow-200 text-red '>
-            add-facility
+        <div>
+            <AddFacilityPage />
         </div>
     );
 };
