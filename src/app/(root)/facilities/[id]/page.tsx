@@ -1,9 +1,8 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { CalendarDays, Clock3, MapPin, Users } from "lucide-react";
+import { Clock3, MapPin, Users } from "lucide-react";
 import type { ApiFacility } from "@/components/api-facility-card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import BookingForm from "@/app/dashboard/_components/BookingForm";
 
 
 async function FacilityDetails({
@@ -33,12 +32,12 @@ async function FacilityDetails({
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <article className="min-w-0 overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="relative aspect-[16/9] bg-gradient-to-br from-green-500 to-emerald-700">
+          <div className="relative aspect-[16/9] bg-gradient-to-br">
             {facility.imageUrl ? (
               <img
                 src={facility.imageUrl}
                 alt={facility.facilityName}
-                className="h-full w-full object-cover"
+                className="h-[400px] w-[500px] object-cover"
               />
             ) : (
               <div className="flex h-full items-center justify-center text-lg font-medium text-white">
@@ -113,80 +112,11 @@ async function FacilityDetails({
               </p>
             </div>
 
-            <form className="mt-5 space-y-4">
-              <div className="space-y-1.5">
-                <label htmlFor="booking-name" className="text-sm font-medium">
-                  Your name
-                </label>
-                <Input
-                  id="booking-name"
-                  name="name"
-                  autoComplete="name"
-                  placeholder="Full name"
-                  required
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label htmlFor="booking-email" className="text-sm font-medium">
-                  Email address
-                </label>
-                <Input
-                  id="booking-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                  <label htmlFor="booking-date" className="text-sm font-medium">
-                    Date
-                  </label>
-                  <Input id="booking-date" name="date" type="date" required />
-                </div>
-                <div className="space-y-1.5">
-                  <label htmlFor="booking-time" className="text-sm font-medium">
-                    Start time
-                  </label>
-                  <Input id="booking-time" name="time" type="time" required />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="booking-duration"
-                  className="text-sm font-medium"
-                >
-                  Duration
-                </label>
-                <select
-                  id="booking-duration"
-                  name="duration"
-                  defaultValue="1"
-                  className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                >
-                  <option value="1">1 hour</option>
-                  <option value="2">2 hours</option>
-                  <option value="3">3 hours</option>
-                </select>
-              </div>
-
-              <Button
-                type="button"
-                
-                className="h-10 w-full gap-2 rounded-xl"
-              >
-                <CalendarDays className="size-4" />
-                Booking unavailable
-              </Button>
-              <p className="text-center text-xs text-muted-foreground">
-                Booking requests are not connected yet.
-              </p>
-            </form>
+            <BookingForm
+              facilityId={facility._id}
+              facilityName={facility.facilityName}
+              price={facility.price}
+            />
           </section>
         </aside>
       </div>
